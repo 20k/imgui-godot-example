@@ -2,8 +2,34 @@
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
+#include <godot_cpp/classes/node.hpp>
+#include <stdio.h>
 
 using namespace godot;
+
+class example_class : public Node
+{
+    GDCLASS(example_class, Node)
+
+public:
+    example_class(){}
+    ~example_class(){}
+
+    static void _bind_methods()
+    {
+
+    }
+
+    void _notification(int p_what)
+    {
+
+    }
+
+    void _process(double delta) override
+    {
+        printf("hi\n");
+    }
+};
 
 void initialize_gdextension_types(ModuleInitializationLevel p_level)
 {
@@ -12,6 +38,8 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	}
 
 	//ImGui::Godot::SyncImGuiPtrs();
+
+	GDREGISTER_CLASS(example_class);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {
